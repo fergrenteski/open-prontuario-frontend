@@ -43,3 +43,9 @@ export type MotivoSaida = 'ATENDIDO' | 'DESISTENCIA' | 'ENCAMINHADO';
 export function rotuloTipoUnidade(tipo: TipoUnidade): string {
   return tipo === 'UPA' ? 'Unidade de Pronto Atendimento' : 'Unidade Básica de Saúde';
 }
+
+/** Função id → nome para listas que só trazem unidadeId. */
+export function nomesDeUnidades(unidades: Unidade[] | undefined): (id: string) => string {
+  const mapa = new Map((unidades ?? []).map((u) => [u.id, u.nome]));
+  return (id) => mapa.get(id) ?? id;
+}

@@ -1,0 +1,79 @@
+.proximas__titulo {
+  font-size: var(--t-3xl);
+}
+
+.proximas__origem {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  margin-top: var(--e-2);
+  color: var(--tinta-suave);
+  font-size: var(--t-sm);
+}
+
+.proximas__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--e-4);
+}
+
+.proximas__cartao {
+  display: grid;
+  gap: var(--e-3);
+  padding: var(--e-4);
+}
+
+.proximas__topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.proximas__tipo {
+  padding: 2px var(--e-2);
+  border-radius: 4px;
+  background: var(--tinta);
+  color: var(--tinta-invertida);
+  font-family: var(--fonte-dado);
+  font-size: var(--t-xs);
+}
+
+.proximas__distancia {
+  font-size: var(--t-xl);
+  font-weight: 600;
+}
+
+.proximas__nome {
+  font-size: var(--t-2xl);
+}
+
+.proximas__movimento {
+  display: grid;
+  gap: var(--e-1);
+}
+
+.proximas__numeros {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: var(--e-2) 0 0;
+  border-top: 1px solid var(--linha);
+  padding-top: var(--e-2);
+}
+
+.proximas__numeros dt {
+  font-size: var(--t-xs);
+  color: var(--tinta-suave);
+}
+
+.proximas__numeros dd {
+  margin: 0;
+  font-size: var(--t-lg);
+  font-weight: 600;
+}
+
+.proximas__samu {
+  font-size: var(--t-sm);
+  color: var(--tinta-suave);
+}

@@ -39,3 +39,7 @@ export interface VisaoAgregada {
 
 export type StatusFila = 'A_CAMINHO' | 'AGUARDANDO' | 'EM_ATENDIMENTO' | 'FINALIZADO';
 export type MotivoSaida = 'ATENDIDO' | 'DESISTENCIA' | 'ENCAMINHADO';
+
+export function rotuloTipoUnidade(tipo: TipoUnidade): string {
+  return tipo === 'UPA' ? 'Unidade de Pronto Atendimento' : 'Unidade Básica de Saúde';
+}

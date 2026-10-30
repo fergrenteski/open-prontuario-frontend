@@ -6,6 +6,7 @@
   "description": "Open Prontuário — microfrontend SPA (paciente, atendente e gestor) que fala somente com o BFF",
   "scripts": {
     "dev": "vite",
+    "dev:mock": "node scripts/dev-mock/servidor.mjs",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint .",

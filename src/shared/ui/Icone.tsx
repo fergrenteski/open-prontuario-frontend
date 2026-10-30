@@ -100,6 +100,7 @@ const ICONES = {
       <path d="M12 7v5l3.5 2" />
     </>
   ),
+  seta: <path d="M5 12h14M13 6l6 6-6 6" />,
   mais: <path d="M12 5v14M5 12h14" />,
   lixeira: (
     <>

@@ -1,0 +1,24 @@
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
+import { LoginPage } from '../features/auth/login/ui/LoginPage';
+import { useSessao } from '../shared/application/sessao';
+import { rotaInicial } from '../shared/domain/perfis';
+import { portas } from './container';
+import { SessaoProvider } from './sessao';
+
+function Inicio() {
+  const { sessao } = useSessao();
+  return <Navigate to={sessao ? rotaInicial(sessao.usuario) : '/entrar'} replace />;
+}
+
+export function App() {
+  return (
+    <SessaoProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/entrar" element={<LoginPage porta={portas.autenticacao} />} />
+          <Route path="*" element={<Inicio />} />
+        </Routes>
+      </BrowserRouter>
+    </SessaoProvider>
+  );
+}

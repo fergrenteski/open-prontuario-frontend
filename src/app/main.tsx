@@ -1,9 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../shared/ui/estilos.css';
+import { App } from './App';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
-    <main>Open Prontuário</main>
+    <App />
   </StrictMode>,
 );

@@ -1,0 +1,109 @@
+.aviso__voltar {
+  font-weight: 700;
+  justify-self: start;
+}
+
+.aviso__titulo {
+  font-size: var(--t-3xl);
+  margin: var(--e-1) 0 var(--e-2);
+}
+
+.aviso__grupo {
+  margin: 0;
+  padding: var(--e-4);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  background: var(--ficha);
+  display: grid;
+  gap: var(--e-3);
+}
+
+.aviso__grupo legend {
+  float: left;
+  width: 100%;
+  font-weight: 700;
+  font-size: var(--t-lg);
+  margin-bottom: var(--e-1);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}
+
+.chip {
+  position: relative;
+}
+
+.chip input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--e-4);
+  border: 1.5px solid var(--linha-forte);
+  border-radius: var(--raio-pill);
+  background: var(--ficha);
+  font-weight: 700;
+  font-size: var(--t-sm);
+}
+
+.chip input:checked + span {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--tinta-invertida);
+}
+
+.chip input:checked + span::before {
+  content: '✓';
+  margin-right: var(--e-1);
+}
+
+.chip input:focus-visible + span {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.aviso__consentimento {
+  border-left: 6px solid var(--carimbo);
+}
+
+.aviso__consentimento .caixa-marcacao > span {
+  display: grid;
+  gap: var(--e-1);
+}
+
+.aviso__enviar {
+  min-height: 52px;
+  font-size: var(--t-md);
+}
+
+.aviso__ok {
+  display: grid;
+  gap: var(--e-2);
+  color: var(--sucesso);
+}
+
+.aviso__ok h1 {
+  color: var(--tinta);
+}
+
+.aviso__resumo {
+  padding: var(--e-4);
+  justify-items: start;
+}
+
+.aviso__autorizacao {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  font-weight: 700;
+}

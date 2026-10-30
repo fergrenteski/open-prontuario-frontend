@@ -1,0 +1,38 @@
+.meu__titulo {
+  font-size: var(--t-3xl);
+  margin-bottom: var(--e-2);
+}
+
+.meu__secao {
+  font-size: var(--t-lg);
+}
+
+.meu__acessos {
+  padding: var(--e-4);
+}
+
+.meu__nenhum {
+  font-weight: 700;
+}
+
+.meu__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--e-3);
+}
+
+.meu__lista li {
+  display: grid;
+  gap: 2px;
+  padding-left: var(--e-3);
+  border-left: 3px solid var(--carimbo);
+  font-size: var(--t-sm);
+}
+
+.meu__lista time,
+.meu__consent {
+  color: var(--tinta-suave);
+  font-size: var(--t-xs);
+}

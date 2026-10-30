@@ -4,6 +4,11 @@ import { criarProntuarioHttp } from '../features/atendente/prontuario/infrastruc
 import { criarSelecaoUnidadeHttp } from '../features/atendente/selecao-unidade/infrastructure/selecaoUnidadeHttp';
 import { criarAutenticacaoDev } from '../features/auth/login/infrastructure/autenticacaoDev';
 import { criarAutenticacaoEntra } from '../features/auth/login/infrastructure/autenticacaoEntra';
+import { criarAvisoChegadaHttp } from '../features/paciente/aviso-chegada/infrastructure/avisoChegadaHttp';
+import { criarConsentimentosHttp } from '../features/paciente/consentimentos/infrastructure/consentimentosHttp';
+import { criarMeuProntuarioHttp } from '../features/paciente/meu-prontuario/infrastructure/meuProntuarioHttp';
+import { geolocalizacaoNavegador } from '../features/paciente/unidades-proximas/infrastructure/geolocalizacaoNavegador';
+import { criarUnidadesProximasHttp } from '../features/paciente/unidades-proximas/infrastructure/unidadesProximasHttp';
 import { config } from '../shared/infrastructure/config';
 import { criarHttpClient } from '../shared/infrastructure/httpClient';
 import { sessaoGlobal } from './sessaoGlobal';
@@ -23,4 +28,9 @@ export const portas = {
   selecaoUnidade: criarSelecaoUnidadeHttp(http),
   fila: criarFilaHttp(http),
   prontuario: criarProntuarioHttp(http),
+  unidadesProximas: criarUnidadesProximasHttp(http),
+  localizacao: geolocalizacaoNavegador,
+  avisoChegada: criarAvisoChegadaHttp(http),
+  consentimentos: criarConsentimentosHttp(http),
+  meuProntuario: criarMeuProntuarioHttp(http),
 };

@@ -4,7 +4,7 @@
 export const PRIORIDADES = ['EMERGENCIA', 'MUITO_URGENTE', 'URGENTE', 'POUCO_URGENTE', 'NAO_URGENTE'] as const;
 export type Prioridade = (typeof PRIORIDADES)[number];
 
-export type FormaPrioridade = 'octogono' | 'triangulo' | 'losango' | 'quadrado' | 'circulo';
+export type FormaPrioridade = 'cruz' | 'triangulo' | 'losango' | 'quadrado' | 'circulo';
 
 export interface InfoPrioridade {
   rotulo: string;
@@ -15,7 +15,7 @@ export interface InfoPrioridade {
 }
 
 const INFO: Record<Prioridade, InfoPrioridade> = {
-  EMERGENCIA: { rotulo: 'Emergência', cor: 'vermelho', forma: 'octogono', tempoAlvo: 'imediato' },
+  EMERGENCIA: { rotulo: 'Emergência', cor: 'vermelho', forma: 'cruz', tempoAlvo: 'imediato' },
   MUITO_URGENTE: { rotulo: 'Muito urgente', cor: 'laranja', forma: 'triangulo', tempoAlvo: 'até 10 min' },
   URGENTE: { rotulo: 'Urgente', cor: 'amarelo', forma: 'losango', tempoAlvo: 'até 60 min' },
   POUCO_URGENTE: { rotulo: 'Pouco urgente', cor: 'verde', forma: 'quadrado', tempoAlvo: 'até 120 min' },

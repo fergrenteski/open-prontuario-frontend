@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 // Ícones próprios em SVG (traço 2px), sem biblioteca. Decorativos por padrão (aria-hidden).
 const ICONES = {
-  octogono: <path d="M8.2 2h7.6L22 8.2v7.6L15.8 22H8.2L2 15.8V8.2z" fill="currentColor" stroke="none" />,
+  cruz: <path d="M8.5 1.5h7v7h7v7h-7v7h-7v-7h-7v-7h7z" fill="currentColor" stroke="none" />,
   triangulo: <path d="M12 2.5 22.5 21h-21z" fill="currentColor" stroke="none" />,
   losango: <path d="M12 1.5 22.5 12 12 22.5 1.5 12z" fill="currentColor" stroke="none" />,
   quadrado: <rect x="3.5" y="3.5" width="17" height="17" rx="2" fill="currentColor" stroke="none" />,

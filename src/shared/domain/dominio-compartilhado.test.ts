@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { rotuloCongestionamento, segmentosCongestionamento } from './congestionamento';
 import { formatarDataHora, formatarDuracao, formatarHora, minutosEntre } from './datas';
-import { ErroApi, codigoPorStatus, mensagemDeErro, temCodigo } from './erros';
+import { ErroApi, ErroValidacao, codigoPorStatus, mensagemDeErro, temCodigo } from './erros';
 import { rotaInicial, rotuloPerfil, temPerfil } from './perfis';
 import { PRIORIDADES, gravidade, infoPrioridade } from './prioridade';
 import type { Usuario } from './tipos';
@@ -17,7 +17,7 @@ describe('prioridade (Manchester)', () => {
     expect(new Set(infos.map((i) => i.rotulo)).size).toBe(5);
     expect(new Set(infos.map((i) => i.cor)).size).toBe(5);
     expect(new Set(infos.map((i) => i.forma)).size).toBe(5);
-    expect(infoPrioridade('EMERGENCIA')).toMatchObject({ rotulo: 'Emergência', cor: 'vermelho', forma: 'octogono' });
+    expect(infoPrioridade('EMERGENCIA')).toMatchObject({ rotulo: 'Emergência', cor: 'vermelho', forma: 'cruz' });
     expect(infoPrioridade('NAO_URGENTE').cor).toBe('azul');
   });
 });
@@ -42,6 +42,7 @@ describe('erros', () => {
   it('cai para a mensagem do status quando o codigo é desconhecido', () => {
     expect(mensagemDeErro(new ErroApi({ status: 503, codigo: 'OUTRO' }))).toMatch(/fora do ar/);
     expect(mensagemDeErro(new Error('qualquer'))).toMatch(/Algo deu errado/);
+    expect(mensagemDeErro(new ErroValidacao('Informe o nome.'))).toBe('Informe o nome.');
   });
 
   it('mapeia status HTTP para codigo', () => {

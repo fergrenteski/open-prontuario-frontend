@@ -1,0 +1,99 @@
+.ficha-pront {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e-4);
+}
+
+.ficha-pront__bloco {
+  display: grid;
+  align-content: start;
+  gap: var(--e-2);
+  padding: var(--e-4);
+  background: var(--ficha);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+}
+
+.ficha-pront__bloco h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--e-1);
+}
+
+/* Alergia é informação de risco: faixa vermelha e texto grande. */
+.ficha-pront__alergias {
+  border-left: 6px solid var(--m-vermelho);
+}
+
+.ficha-pront__alergias h2 {
+  color: var(--perigo);
+}
+
+.ficha-pront__itens {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}
+
+.ficha-pront__itens li {
+  padding: var(--e-1) var(--e-3);
+  border-radius: var(--raio-pill);
+  border: 1.5px solid var(--linha-forte);
+  font-weight: 700;
+  font-size: var(--t-lg);
+}
+
+.ficha-pront__alergias .ficha-pront__itens li {
+  border-color: var(--perigo);
+  background: var(--perigo-claro);
+}
+
+.ficha-pront__historico {
+  grid-column: 1 / -1;
+}
+
+.linha-tempo {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--e-3);
+}
+
+.linha-tempo li {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: var(--e-1) var(--e-4);
+  padding-left: var(--e-4);
+  border-left: 3px solid var(--linha-forte);
+}
+
+.linha-tempo time {
+  font-size: var(--t-sm);
+  color: var(--tinta-suave);
+}
+
+.linha-tempo__unidade {
+  font-weight: 700;
+}
+
+.linha-tempo p {
+  grid-column: 2;
+}
+
+@media (max-width: 640px) {
+  .ficha-pront {
+    grid-template-columns: 1fr;
+  }
+
+  .linha-tempo li {
+    grid-template-columns: 1fr;
+  }
+
+  .linha-tempo p {
+    grid-column: 1;
+  }
+}

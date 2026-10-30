@@ -1,0 +1,48 @@
+.pront {
+  max-width: 1080px;
+}
+
+.pront__voltar {
+  font-weight: 700;
+  justify-self: start;
+}
+
+.pront__nome {
+  font-size: var(--t-4xl);
+  margin: var(--e-1) 0;
+}
+
+.pront__bloqueio {
+  display: flex;
+  gap: var(--e-4);
+  align-items: flex-start;
+  padding: var(--e-5);
+  border: 2px solid var(--tinta);
+  border-radius: var(--raio);
+  background: var(--ficha);
+}
+
+.pront__bloqueio h2 {
+  font-size: var(--t-xl);
+}
+
+.pront__bloqueio p {
+  max-width: 64ch;
+}
+
+.pront__auditado {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  font-size: var(--t-sm);
+  color: var(--sucesso);
+  font-weight: 700;
+}
+
+.pront__form {
+  padding: var(--e-5);
+}
+
+.pront__form h2 {
+  font-size: var(--t-xl);
+}

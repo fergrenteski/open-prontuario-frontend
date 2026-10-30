@@ -30,6 +30,14 @@ export class ErroApi extends Error {
   }
 }
 
+/** Dado recusado antes de sair do navegador; a mensagem já é a que o usuário deve ler. */
+export class ErroValidacao extends Error {
+  constructor(mensagem: string) {
+    super(mensagem);
+    this.name = 'ErroValidacao';
+  }
+}
+
 const MENSAGENS: Record<CodigoErro, string> = {
   REQUISICAO_INVALIDA: 'Alguns dados não foram aceitos. Revise os campos e tente de novo.',
   NAO_AUTENTICADO: 'Sua sessão terminou. Entre novamente para continuar.',
@@ -58,6 +66,7 @@ export function codigoPorStatus(status: number): CodigoErro {
 }
 
 export function mensagemDeErro(erro: unknown): string {
+  if (erro instanceof ErroValidacao) return erro.message;
   if (erro instanceof ErroApi) {
     return MENSAGENS[erro.codigo as CodigoErro] ?? MENSAGENS[codigoPorStatus(erro.status)];
   }

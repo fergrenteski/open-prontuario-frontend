@@ -1,4 +1,5 @@
 // Composition root: único lugar que conhece as implementações (infrastructure) das portas.
+import { criarFilaHttp } from '../features/atendente/fila/infrastructure/filaHttp';
 import { criarSelecaoUnidadeHttp } from '../features/atendente/selecao-unidade/infrastructure/selecaoUnidadeHttp';
 import { criarAutenticacaoDev } from '../features/auth/login/infrastructure/autenticacaoDev';
 import { criarAutenticacaoEntra } from '../features/auth/login/infrastructure/autenticacaoEntra';
@@ -18,4 +19,5 @@ export const portas = {
       ? criarAutenticacaoEntra({ apiBaseUrl: config.apiBaseUrl, ...config.entra })
       : criarAutenticacaoDev(http),
   selecaoUnidade: criarSelecaoUnidadeHttp(http),
+  fila: criarFilaHttp(http),
 };

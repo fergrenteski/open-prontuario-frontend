@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
+import { FilaPage } from '../features/atendente/fila/ui/FilaPage';
 import { SelecaoUnidadePage } from '../features/atendente/selecao-unidade/ui/SelecaoUnidadePage';
 import { LoginPage } from '../features/auth/login/ui/LoginPage';
 import { useSessao } from '../shared/application/sessao';
@@ -27,6 +28,7 @@ export function App() {
             }
           >
             <Route path="/atendimento" element={<SelecaoUnidadePage porta={portas.selecaoUnidade} />} />
+            <Route path="/atendimento/:unidadeId/fila" element={<FilaPage porta={portas.fila} />} />
           </Route>
           <Route path="*" element={<Inicio />} />
         </Routes>

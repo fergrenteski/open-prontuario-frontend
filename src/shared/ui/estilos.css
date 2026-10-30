@@ -1,0 +1,603 @@
+/*
+ * Open Prontuário — tokens e base visual.
+ * Direção: “parede de hospital e ficha de papel”. Fundo verde-acinzentado de parede de
+ * unidade de saúde, superfícies de ficha, tinta de caneta (carimbo) para ações e as
+ * cinco cores da pulseira de Manchester como único lugar de cor saturada.
+ */
+
+:root {
+  /* Superfícies */
+  --parede: #e6ece8;
+  --ficha: #fafbf9;
+  --ficha-2: #f0f4f1;
+  --linha: #c3cfc8;
+  --linha-forte: #8fa299;
+
+  /* Texto */
+  --tinta: #11302a;
+  --tinta-suave: #44594f;
+  --tinta-invertida: #f4f7f5;
+
+  /* Ação (tinta de carimbo) */
+  --carimbo: #2b3c9e;
+  --carimbo-escuro: #1f2c78;
+  --carimbo-claro: #e3e6f7;
+  --foco: #2b3c9e;
+
+  /* Estados */
+  --perigo: #a3172a;
+  --perigo-claro: #fbe4e7;
+  --aviso-claro: #fff3d1;
+  --sucesso: #1f6b3e;
+  --sucesso-claro: #dcefe2;
+
+  /* Pulseira de Manchester: sólido (ícone/faixa) e tinta clara (fundo do rótulo) */
+  --m-vermelho: #d21f3c;
+  --m-vermelho-claro: #fbe3e6;
+  --m-laranja: #ec6a1e;
+  --m-laranja-claro: #fdebdd;
+  --m-amarelo: #f5c21b;
+  --m-amarelo-claro: #fdf4d2;
+  --m-verde: #2e8b4f;
+  --m-verde-claro: #dff1e5;
+  --m-azul: #2369b5;
+  --m-azul-claro: #dfeaf7;
+
+  /* Tipografia */
+  --fonte-placa: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --fonte-texto: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --fonte-dado: 'Atkinson Hyperlegible Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --t-xs: 0.75rem;
+  --t-sm: 0.875rem;
+  --t-md: 1rem;
+  --t-lg: 1.125rem;
+  --t-xl: 1.375rem;
+  --t-2xl: 1.75rem;
+  --t-3xl: 2.5rem;
+  --t-4xl: 3.5rem;
+
+  /* Espaço e forma */
+  --e-1: 0.25rem;
+  --e-2: 0.5rem;
+  --e-3: 0.75rem;
+  --e-4: 1rem;
+  --e-5: 1.5rem;
+  --e-6: 2rem;
+  --e-7: 3rem;
+  --raio: 10px;
+  --raio-pill: 999px;
+  --sombra: 0 1px 0 rgb(17 48 42 / 0.06), 0 6px 18px -10px rgb(17 48 42 / 0.25);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--parede);
+  color: var(--tinta);
+  font-family: var(--fonte-texto);
+  font-size: var(--t-md);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.1;
+}
+
+.placa {
+  font-family: var(--fonte-placa);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+}
+
+.dado {
+  font-family: var(--fonte-dado);
+  font-variant-numeric: tabular-nums;
+}
+
+.sobretitulo {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.suave {
+  color: var(--tinta-suave);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--carimbo);
+  text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.pular-conteudo {
+  position: absolute;
+  left: var(--e-4);
+  top: -100px;
+  z-index: 100;
+  background: var(--carimbo);
+  color: #fff;
+  padding: var(--e-2) var(--e-4);
+  border-radius: var(--raio);
+}
+
+.pular-conteudo:focus {
+  top: var(--e-2);
+}
+
+/* ---------- Botões ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  min-height: 44px;
+  padding: 0 var(--e-4);
+  border: 1.5px solid var(--carimbo);
+  border-radius: var(--raio);
+  background: var(--ficha);
+  color: var(--carimbo);
+  font: 700 var(--t-sm) / 1 var(--fonte-texto);
+  cursor: pointer;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.btn:hover {
+  background: var(--carimbo-claro);
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn--primario {
+  background: var(--carimbo);
+  color: #fff;
+}
+
+.btn--primario:hover {
+  background: var(--carimbo-escuro);
+}
+
+.btn--perigo {
+  border-color: var(--perigo);
+  color: var(--perigo);
+}
+
+.btn--perigo:hover {
+  background: var(--perigo-claro);
+}
+
+.btn--compacto {
+  min-height: 36px;
+  padding: 0 var(--e-3);
+  font-size: var(--t-xs);
+}
+
+.btn--largo {
+  width: 100%;
+}
+
+/* ---------- Formulários ---------- */
+
+.campo {
+  display: grid;
+  gap: var(--e-1);
+}
+
+.campo > label,
+.campo > .rotulo {
+  font-weight: 700;
+  font-size: var(--t-sm);
+}
+
+.campo .ajuda {
+  font-size: var(--t-xs);
+  color: var(--tinta-suave);
+}
+
+input[type='text'],
+input[type='number'],
+input[type='search'],
+input[type='datetime-local'],
+select,
+textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--e-2) var(--e-3);
+  border: 1.5px solid var(--linha-forte);
+  border-radius: var(--raio);
+  background: var(--ficha);
+  color: var(--tinta);
+  font: inherit;
+}
+
+textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline-offset: 0;
+  border-color: var(--foco);
+}
+
+input[aria-invalid='true'],
+textarea[aria-invalid='true'] {
+  border-color: var(--perigo);
+}
+
+.erro-campo {
+  color: var(--perigo);
+  font-size: var(--t-xs);
+  font-weight: 700;
+}
+
+.caixa-marcacao {
+  display: flex;
+  gap: var(--e-3);
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.caixa-marcacao input {
+  width: 22px;
+  height: 22px;
+  margin: 2px 0 0;
+  accent-color: var(--carimbo);
+  flex: none;
+}
+
+/* ---------- Superfícies ---------- */
+
+.ficha {
+  background: var(--ficha);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.pilha {
+  display: grid;
+  gap: var(--e-4);
+}
+
+.linha-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+  align-items: center;
+}
+
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  padding: 2px var(--e-2);
+  border-radius: var(--raio-pill);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  border: 1px solid var(--linha-forte);
+  background: var(--ficha);
+  white-space: nowrap;
+}
+
+.etiqueta--ok {
+  background: var(--sucesso-claro);
+  border-color: var(--sucesso);
+  color: var(--sucesso);
+}
+
+.etiqueta--perigo {
+  background: var(--perigo-claro);
+  border-color: var(--perigo);
+  color: var(--perigo);
+}
+
+.etiqueta--neutra {
+  color: var(--tinta-suave);
+}
+
+/* ---------- Estados (carregando, vazio, erro) ---------- */
+
+.estado {
+  display: grid;
+  justify-items: start;
+  gap: var(--e-2);
+  padding: var(--e-5);
+  border: 1.5px dashed var(--linha-forte);
+  border-radius: var(--raio);
+  color: var(--tinta-suave);
+}
+
+.estado h2,
+.estado h3 {
+  color: var(--tinta);
+  font-size: var(--t-lg);
+}
+
+.carregando {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-5);
+  color: var(--tinta-suave);
+}
+
+.carregando__pulso {
+  width: 28px;
+  height: 10px;
+  border-radius: var(--raio-pill);
+  background: linear-gradient(90deg, var(--m-vermelho), var(--m-laranja), var(--m-amarelo), var(--m-verde), var(--m-azul));
+  animation: pulso 1.1s ease-in-out infinite;
+}
+
+@keyframes pulso {
+  50% {
+    opacity: 0.35;
+    transform: scaleX(0.8);
+  }
+}
+
+.alerta {
+  display: flex;
+  gap: var(--e-3);
+  align-items: flex-start;
+  padding: var(--e-3) var(--e-4);
+  border-radius: var(--raio);
+  border: 1.5px solid var(--perigo);
+  background: var(--perigo-claro);
+  color: var(--tinta);
+}
+
+.alerta svg {
+  flex: none;
+  color: var(--perigo);
+  margin-top: 2px;
+}
+
+.alerta--aviso {
+  border-color: #b07b00;
+  background: var(--aviso-claro);
+}
+
+.alerta--aviso svg {
+  color: #8a5f00;
+}
+
+.alerta--sucesso {
+  border-color: var(--sucesso);
+  background: var(--sucesso-claro);
+}
+
+.alerta--sucesso svg {
+  color: var(--sucesso);
+}
+
+.alerta__corpo {
+  display: grid;
+  gap: var(--e-1);
+}
+
+.alerta__rastreio {
+  font-family: var(--fonte-dado);
+  font-size: var(--t-xs);
+  color: var(--tinta-suave);
+}
+
+/* ---------- Pulseira de Manchester (assinatura visual) ---------- */
+
+.pulseira {
+  --cor: var(--m-azul);
+  --cor-clara: var(--m-azul-claro);
+  --cor-icone: #fff;
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: var(--raio-pill);
+  border: 1.5px solid var(--cor);
+  background: var(--cor-clara);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.pulseira__fecho {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 4px 10px 4px 8px;
+  background: var(--cor);
+  color: var(--cor-icone);
+}
+
+/* furo do fecho da pulseira */
+.pulseira__fecho::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--cor-clara);
+  box-shadow: inset 0 0 0 1.5px var(--cor);
+}
+
+.pulseira__rotulo {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px 5px 9px;
+  color: var(--tinta);
+}
+
+.pulseira--grande {
+  font-size: var(--t-md);
+}
+
+.pulseira--grande .pulseira__fecho {
+  padding: 8px 14px 8px 12px;
+}
+
+.pulseira--grande .pulseira__rotulo {
+  padding: 8px 14px;
+}
+
+.cor-vermelho {
+  --cor: var(--m-vermelho);
+  --cor-clara: var(--m-vermelho-claro);
+}
+
+.cor-laranja {
+  --cor: var(--m-laranja);
+  --cor-clara: var(--m-laranja-claro);
+}
+
+.cor-amarelo {
+  --cor: var(--m-amarelo);
+  --cor-clara: var(--m-amarelo-claro);
+  --cor-icone: var(--tinta);
+}
+
+.cor-verde {
+  --cor: var(--m-verde);
+  --cor-clara: var(--m-verde-claro);
+}
+
+.cor-azul {
+  --cor: var(--m-azul);
+  --cor-clara: var(--m-azul-claro);
+}
+
+/* ---------- Medidor de congestionamento ---------- */
+
+.medidor {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  font-size: var(--t-sm);
+  font-weight: 700;
+}
+
+.medidor__barras {
+  display: inline-flex;
+  gap: 3px;
+  align-items: flex-end;
+}
+
+.medidor__barras span {
+  width: 7px;
+  border-radius: 2px;
+  background: var(--linha);
+}
+
+.medidor__barras span:nth-child(1) {
+  height: 8px;
+}
+
+.medidor__barras span:nth-child(2) {
+  height: 13px;
+}
+
+.medidor__barras span:nth-child(3) {
+  height: 18px;
+}
+
+.medidor[data-nivel='BAIXO'] .medidor__barras span:nth-child(-n + 1) {
+  background: var(--m-verde);
+}
+
+.medidor[data-nivel='MEDIO'] .medidor__barras span:nth-child(-n + 2) {
+  background: #c99700;
+}
+
+.medidor[data-nivel='ALTO'] .medidor__barras span {
+  background: var(--m-vermelho);
+}
+
+/* ---------- Tabelas densas ---------- */
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-sm);
+}
+
+.tabela th {
+  text-align: left;
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  padding: var(--e-2) var(--e-3);
+  border-bottom: 1.5px solid var(--linha-forte);
+}
+
+.tabela td {
+  padding: var(--e-2) var(--e-3);
+  border-bottom: 1px solid var(--linha);
+  vertical-align: middle;
+}
+
+.rolagem-x {
+  overflow-x: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

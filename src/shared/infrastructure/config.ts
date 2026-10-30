@@ -4,6 +4,8 @@ const env = import.meta.env;
 
 export const config = {
   apiBaseUrl: (env.VITE_API_BASE_URL || '/api').replace(/\/+$/, ''),
+  /** Exigida pelo API Gateway (APIM) em nuvem; vazia no ambiente local (BFF direto). */
+  apimSubscriptionKey: env.VITE_APIM_SUBSCRIPTION_KEY ?? '',
   authMode: env.VITE_AUTH_MODE === 'entra' ? ('entra' as const) : ('dev' as const),
   entra: {
     clientId: env.VITE_ENTRA_CLIENT_ID ?? '',

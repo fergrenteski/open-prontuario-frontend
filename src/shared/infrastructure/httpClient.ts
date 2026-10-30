@@ -17,6 +17,8 @@ export interface OpcoesHttp {
   /** Chamado em qualquer 401 (sessão expirada / token inválido). */
   aoNaoAutenticar?: () => void;
   timeoutMs?: number;
+  /** Chave de assinatura do Azure API Management (gateway em nuvem). */
+  chaveApim?: string;
 }
 
 function montarUrl(baseUrl: string, caminho: string, consulta?: Consulta): string {
@@ -47,6 +49,7 @@ export function criarHttpClient(opcoes: OpcoesHttp): HttpClient {
     const token = await opcoes.obterToken();
     const headers: Record<string, string> = { Accept: 'application/json, application/problem+json' };
     if (token) headers.Authorization = `Bearer ${token}`;
+    if (opcoes.chaveApim) headers['Ocp-Apim-Subscription-Key'] = opcoes.chaveApim;
     if (corpo !== undefined) headers['Content-Type'] = 'application/json';
 
     let resposta: Response;

@@ -41,6 +41,17 @@ describe('httpClient', () => {
     expect(JSON.parse(init.body)).toEqual({ unidadeId: 'upa-01' });
   });
 
+  it('envia Ocp-Apim-Subscription-Key quando a chave do APIM está configurada', async () => {
+    const fetchFake = vi.fn().mockImplementation(() => Promise.resolve(resposta(204)));
+    vi.stubGlobal('fetch', fetchFake);
+
+    await criarHttpClient({ baseUrl: '/api', obterToken: () => 't', chaveApim: 'chave-apim' }).post('/x', {});
+    await criarHttpClient({ baseUrl: '/api', obterToken: () => 't' }).get('/x');
+
+    expect(fetchFake.mock.calls[0][1].headers['Ocp-Apim-Subscription-Key']).toBe('chave-apim');
+    expect(fetchFake.mock.calls[1][1].headers).not.toHaveProperty('Ocp-Apim-Subscription-Key');
+  });
+
   it('devolve undefined em 204 (DELETE com query)', async () => {
     const fetchFake = vi.fn().mockResolvedValue(resposta(204));
     vi.stubGlobal('fetch', fetchFake);

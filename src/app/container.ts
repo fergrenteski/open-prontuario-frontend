@@ -11,12 +11,13 @@ const http = criarHttpClient({
   baseUrl: config.apiBaseUrl,
   obterToken: sessaoGlobal.obterToken,
   aoNaoAutenticar: () => sessaoGlobal.definir(null),
+  chaveApim: config.apimSubscriptionKey,
 });
 
 export const portas = {
   autenticacao:
     config.authMode === 'entra'
-      ? criarAutenticacaoEntra({ apiBaseUrl: config.apiBaseUrl, ...config.entra })
+      ? criarAutenticacaoEntra({ apiBaseUrl: config.apiBaseUrl, apimSubscriptionKey: config.apimSubscriptionKey, ...config.entra })
       : criarAutenticacaoDev(http),
   selecaoUnidade: criarSelecaoUnidadeHttp(http),
   fila: criarFilaHttp(http),

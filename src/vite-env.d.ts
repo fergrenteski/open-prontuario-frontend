@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL?: string;
+  readonly VITE_APIM_SUBSCRIPTION_KEY?: string;
   readonly VITE_AUTH_MODE?: 'dev' | 'entra';
   readonly VITE_ENTRA_CLIENT_ID?: string;
   readonly VITE_ENTRA_TENANT_ID?: string;

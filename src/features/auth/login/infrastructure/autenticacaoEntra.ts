@@ -6,6 +6,7 @@ import { criarSessao } from '../domain/login';
 
 export interface ConfigEntra {
   apiBaseUrl: string;
+  apimSubscriptionKey?: string;
   clientId: string;
   tenantId: string;
   apiScope: string;
@@ -42,7 +43,11 @@ export function criarAutenticacaoEntra(cfg: ConfigEntra): AutenticacaoPort {
       const token = await app.acquireTokenSilent({ account: login.account, scopes: [cfg.apiScope] });
       const expiraSeg = Math.round(((token.expiresOn?.getTime() ?? Date.now() + 3600_000) - Date.now()) / 1000);
       // O /auth/me precisa do token antes de a sessão existir: cliente HTTP com esse token.
-      const http = criarHttpClient({ baseUrl: cfg.apiBaseUrl, obterToken: () => token.accessToken });
+      const http = criarHttpClient({
+        baseUrl: cfg.apiBaseUrl,
+        obterToken: () => token.accessToken,
+        chaveApim: cfg.apimSubscriptionKey,
+      });
       const usuario = await http.get<Usuario>('/auth/me');
       return criarSessao(token.accessToken, expiraSeg, usuario, Date.now());
     },

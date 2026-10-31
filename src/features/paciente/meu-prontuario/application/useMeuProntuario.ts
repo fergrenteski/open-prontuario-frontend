@@ -1,5 +1,5 @@
 import { useConsulta } from '../../../../shared/application/useConsulta';
-import { acessosRecentes } from '../domain/meuProntuario';
+import { acessosRecentes } from '../../../../shared/domain/auditoria';
 import type { MeuProntuarioPort } from './ports';
 
 /** Prontuário próprio (sem consentimento, sem auditoria de terceiros) + histórico de acessos. */

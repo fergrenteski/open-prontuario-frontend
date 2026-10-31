@@ -4,7 +4,8 @@ import { renderTela, sessaoDe } from '../../../../test/utils';
 import { ErroApi } from '../../../shared/domain/erros';
 import type { MeuProntuarioPort } from './application/ports';
 import { useMeuProntuario } from './application/useMeuProntuario';
-import { acessosRecentes, unidadesQueAcessaram, type LogAuditoria } from './domain/meuProntuario';
+import { acessosRecentes } from '../../../shared/domain/auditoria';
+import { unidadesQueAcessaram, type LogAuditoria } from './domain/meuProntuario';
 import { MeuProntuarioPage } from './ui/MeuProntuarioPage';
 
 const log = (id: string, unidadeId: string, acessadoEm: string): LogAuditoria => ({

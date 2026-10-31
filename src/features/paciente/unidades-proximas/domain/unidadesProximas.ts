@@ -23,8 +23,8 @@ const km = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 1, maximumFra
 
 /** 0,85 → "850 m"; 3,24 → "3,2 km". */
 export function formatarDistancia(distanciaKm: number): string {
-  if (distanciaKm < 1) return `${Math.round((distanciaKm * 1000) / 10) * 10} m`;
-  return `${km.format(distanciaKm)} km`;
+  if (distanciaKm < 1) return `${Math.round((distanciaKm * 1000) / 10) * 10}\u00a0m`;
+  return `${km.format(distanciaKm)}\u00a0km`;
 }
 
 /** Resumo em linguagem simples para o paciente decidir para onde ir. */

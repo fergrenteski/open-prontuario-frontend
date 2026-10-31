@@ -15,6 +15,7 @@ export function LotacoesPage({ porta }: { porta: LotacoesPort }) {
   const l = useLotacoes(porta, params.get('unidadeId'));
   const [usuarioId, setUsuarioId] = useState('');
   const [perfil, setPerfil] = useState<Perfil>('ATENDENTE');
+  const [removendo, setRemovendo] = useState<string>();
   const nomeUnidade = l.unidades.dados?.find((u) => u.id === l.unidadeId)?.nome ?? l.unidadeId;
 
   async function aoCriar(e: FormEvent) {
@@ -65,15 +66,33 @@ export function LotacoesPage({ porta }: { porta: LotacoesPort }) {
                       <td>{rotuloPerfil(x.perfil)}</td>
                       <td>
                         <div className="gestao__acoes-linha">
-                          <button
-                            type="button"
-                            className="btn btn--compacto btn--perigo"
-                            disabled={l.remover.pendente}
-                            onClick={() => l.remover.executar(x)}
-                            aria-label={`Remover lotação de ${x.usuarioId}`}
-                          >
-                            <Icone nome="lixeira" /> Remover
-                          </button>
+                          {removendo === x.id ? (
+                            <>
+                              <button
+                                type="button"
+                                className="btn btn--compacto btn--perigo"
+                                disabled={l.remover.pendente}
+                                onClick={async () => {
+                                  await l.remover.executar(x);
+                                  setRemovendo(undefined);
+                                }}
+                              >
+                                Confirmar remoção
+                              </button>
+                              <button type="button" className="btn btn--compacto" onClick={() => setRemovendo(undefined)}>
+                                Manter
+                              </button>
+                            </>
+                          ) : (
+                            <button
+                              type="button"
+                              className="btn btn--compacto btn--perigo"
+                              onClick={() => setRemovendo(x.id)}
+                              aria-label={`Remover lotação de ${x.usuarioId}`}
+                            >
+                              <Icone nome="lixeira" /> Remover
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>
@@ -89,12 +108,12 @@ export function LotacoesPage({ porta }: { porta: LotacoesPort }) {
             </h2>
             <div className="campo">
               <label htmlFor="lot-usuario">Usuário</label>
-              <input id="lot-usuario" type="text" value={usuarioId} onChange={(e) => setUsuarioId(e.target.value)} placeholder="usr-prof-03" autoComplete="off" spellCheck={false} />
+              <input id="lot-usuario" name="lot-usuario" type="text" value={usuarioId} onChange={(e) => setUsuarioId(e.target.value)} placeholder="usr-prof-03…" autoComplete="off" spellCheck={false} />
               <span className="ajuda">Identificador (oid) do usuário no Entra ID.</span>
             </div>
             <div className="campo">
               <label htmlFor="lot-perfil">Perfil</label>
-              <select id="lot-perfil" value={perfil} onChange={(e) => setPerfil(e.target.value as Perfil)}>
+              <select id="lot-perfil" name="lot-perfil" value={perfil} onChange={(e) => setPerfil(e.target.value as Perfil)}>
                 {PERFIS_LOTACAO.map((p) => (
                   <option key={p} value={p}>
                     {rotuloPerfil(p)}

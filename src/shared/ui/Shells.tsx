@@ -9,7 +9,9 @@ export function Marca({ invertida }: { invertida?: boolean }) {
   return (
     <span className={`marca${invertida ? ' marca--invertida' : ''}`}>
       <span className="marca__faixa" aria-hidden="true" />
-      <span className="placa">Open Prontuário</span>
+      <span className="placa" translate="no">
+        Open Prontuário
+      </span>
     </span>
   );
 }

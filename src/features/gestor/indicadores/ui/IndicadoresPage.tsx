@@ -52,7 +52,7 @@ export function IndicadoresPage({ porta }: { porta: IndicadoresPort }) {
               <h2 id="titulo-origem" className="indic__secao">
                 Uma chamada, três fontes
               </h2>
-              <p className="dado indic__requisicao">GET /api/aggregated-data?unidadeId={unidadeAtual}</p>
+              <p className="dado indic__requisicao" translate="no">GET /api/aggregated-data?unidadeId={unidadeAtual}</p>
               <p className="suave indic__meta">
                 Gerado em <span className="dado">{formatarDataHora(dados.meta.geradoEm)}</span> · correlationId{' '}
                 <span className="dado">{dados.meta.correlationId}</span> · atualiza a cada {INTERVALO_INDICADORES_MS / 1000} s

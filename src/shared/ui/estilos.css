@@ -90,6 +90,7 @@ body {
   font-size: var(--t-md);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgb(43 60 158 / 0.15);
 }
 
 h1,
@@ -97,6 +98,7 @@ h2,
 h3 {
   margin: 0;
   line-height: 1.1;
+  text-wrap: balance;
 }
 
 .placa {
@@ -105,6 +107,7 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.01em;
   line-height: 0.95;
+  font-variant-numeric: tabular-nums;
 }
 
 .dado {
@@ -236,8 +239,9 @@ a {
   font-size: var(--t-sm);
 }
 
-.campo .ajuda {
+.ajuda {
   font-size: var(--t-xs);
+  font-weight: 400;
   color: var(--tinta-suave);
 }
 

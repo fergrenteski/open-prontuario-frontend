@@ -30,15 +30,15 @@ export function AuditoriaPage({ porta }: { porta: AuditoriaPort }) {
       <form className="ficha gestao__filtro" onSubmit={aoConsultar} noValidate>
         <div className="campo">
           <label htmlFor="aud-prontuario">Prontuário</label>
-          <input id="aud-prontuario" type="text" value={prontuarioId} onChange={(e) => setProntuarioId(e.target.value)} placeholder="pront-001" autoComplete="off" spellCheck={false} />
+          <input id="aud-prontuario" name="aud-prontuario" type="text" value={prontuarioId} onChange={(e) => setProntuarioId(e.target.value)} placeholder="pront-001…" autoComplete="off" spellCheck={false} />
         </div>
         <div className="campo">
           <label htmlFor="aud-de">De</label>
-          <input id="aud-de" type="datetime-local" value={de} onChange={(e) => setDe(e.target.value)} />
+          <input id="aud-de" name="aud-de" type="datetime-local" value={de} onChange={(e) => setDe(e.target.value)} />
         </div>
         <div className="campo">
           <label htmlFor="aud-ate">Até</label>
-          <input id="aud-ate" type="datetime-local" value={ate} onChange={(e) => setAte(e.target.value)} />
+          <input id="aud-ate" name="aud-ate" type="datetime-local" value={ate} onChange={(e) => setAte(e.target.value)} />
         </div>
         <button type="submit" className="btn btn--primario" disabled={consultar.pendente}>
           {consultar.pendente ? 'Consultando…' : 'Consultar acessos'}

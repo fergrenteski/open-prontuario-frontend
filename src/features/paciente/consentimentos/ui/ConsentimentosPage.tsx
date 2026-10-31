@@ -165,7 +165,7 @@ function NovaAutorizacao({ unidades, ocupado, aoConceder }: NovaProps) {
         <form className="consent__form" onSubmit={aoEnviar}>
           <div className="campo">
             <label htmlFor="nova-unidade">Unidade</label>
-            <select id="nova-unidade" value={escolhida} onChange={(e) => setUnidadeId(e.target.value)}>
+            <select id="nova-unidade" name="nova-unidade" value={escolhida} onChange={(e) => setUnidadeId(e.target.value)}>
               {unidades.map((u) => (
                 <option key={u.id} value={u.id}>
                   {u.nome}
@@ -175,7 +175,7 @@ function NovaAutorizacao({ unidades, ocupado, aoConceder }: NovaProps) {
           </div>
           <div className="campo">
             <label htmlFor="nova-dias">Validade (dias)</label>
-            <input id="nova-dias" type="number" inputMode="numeric" min={VALIDADE_MIN} max={VALIDADE_MAX} value={dias} onChange={(e) => setDias(e.target.value)} />
+            <input id="nova-dias" name="nova-dias" type="number" inputMode="numeric" min={VALIDADE_MIN} max={VALIDADE_MAX} value={dias} onChange={(e) => setDias(e.target.value)} />
           </div>
           <button type="submit" className="btn btn--primario" disabled={ocupado}>
             Autorizar

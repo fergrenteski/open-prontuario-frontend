@@ -92,8 +92,8 @@ describe('datas', () => {
   });
 
   it('formata duração', () => {
-    expect(formatarDuracao(45)).toBe('45 min');
-    expect(formatarDuracao(120)).toBe('2 h');
-    expect(formatarDuracao(135)).toBe('2 h 15 min');
+    expect(formatarDuracao(45)).toBe('45\u00a0min');
+    expect(formatarDuracao(120)).toBe('2\u00a0h');
+    expect(formatarDuracao(135)).toBe('2\u00a0h 15\u00a0min');
   });
 });

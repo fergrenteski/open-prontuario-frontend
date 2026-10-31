@@ -19,9 +19,9 @@ const negada: LocalizacaoPort = { obterPosicao: vi.fn().mockRejectedValue(new Er
 describe('unidades próximas (domínio)', () => {
   it('ordena pela distância e formata em m/km', () => {
     expect(ordenarPorDistancia(unidades).map((u) => u.id)).toEqual(['upa-01', 'upa-02']);
-    expect(formatarDistancia(0.847)).toBe('850 m');
-    expect(formatarDistancia(5.42)).toBe('5,4 km');
-    expect(formatarDistancia(1)).toBe('1,0 km');
+    expect(formatarDistancia(0.847)).toBe('850\u00a0m');
+    expect(formatarDistancia(5.42)).toBe('5,4\u00a0km');
+    expect(formatarDistancia(1)).toBe('1,0\u00a0km');
   });
 
   it('resume o movimento em linguagem simples', () => {

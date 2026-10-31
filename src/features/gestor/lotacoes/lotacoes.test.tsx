@@ -92,6 +92,8 @@ describe('LotacoesPage', () => {
     expect(porta.criar).toHaveBeenCalledWith({ usuarioId: 'usr-novo-09', unidadeId: 'upa-02', perfil: 'PROFISSIONAL' });
 
     await u.click(await screen.findByRole('button', { name: 'Remover lotação de usr-atendente-07' }));
+    expect(porta.remover).not.toHaveBeenCalled();
+    await u.click(screen.getByRole('button', { name: 'Confirmar remoção' }));
     expect(porta.remover).toHaveBeenCalledWith('lot-1');
   });
 });

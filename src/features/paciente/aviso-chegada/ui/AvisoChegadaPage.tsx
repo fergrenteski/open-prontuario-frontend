@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Link, useParams } from 'react-router';
 import { formatarHora } from '../../../../shared/domain/datas';
 import { AlertaErro, Alerta, Carregando } from '../../../../shared/ui/Estados';
+import { focarPrimeiroInvalido } from '../../../../shared/ui/foco';
 import { Icone } from '../../../../shared/ui/Icone';
 import { Pulseira } from '../../../../shared/ui/Pulseira';
 import type { AvisoChegadaPort } from '../application/ports';
@@ -26,6 +27,7 @@ export function AvisoChegadaPage({ porta }: { porta: AvisoChegadaPort }) {
 
   async function aoEnviar(e: FormEvent) {
     e.preventDefault();
+    const formulario = e.currentTarget as HTMLFormElement;
     const r = await enviar.executar({
       sintomas: [...marcados, ...outros.split(',')],
       tempoEstimadoChegadaMin: minutos === '' ? undefined : Number(minutos),
@@ -33,6 +35,7 @@ export function AvisoChegadaPage({ porta }: { porta: AvisoChegadaPort }) {
       validadeConsentimentoDias: Number(validade),
     });
     if (r) setRegistro(r);
+    else focarPrimeiroInvalido(formulario);
   }
 
   if (registro) return <Confirmacao registro={registro} nomeUnidade={nomeUnidade} />;
@@ -51,7 +54,11 @@ export function AvisoChegadaPage({ porta }: { porta: AvisoChegadaPort }) {
       {unidade.erro !== undefined && <AlertaErro erro={unidade.erro} aoTentarDeNovo={unidade.recarregar} />}
 
       <form className="pilha" onSubmit={aoEnviar} noValidate>
-        <fieldset className="aviso__grupo" aria-describedby={errosCampos.sintomas ? 'erro-sintomas' : undefined}>
+        <fieldset
+          className="aviso__grupo"
+          aria-describedby={errosCampos.sintomas ? 'erro-sintomas' : undefined}
+          data-invalido={errosCampos.sintomas ? '' : undefined}
+        >
           <legend>O que você está sentindo?</legend>
           <div className="chips">
             {SINTOMAS_COMUNS.map((s) => (
@@ -63,7 +70,7 @@ export function AvisoChegadaPage({ porta }: { porta: AvisoChegadaPort }) {
           </div>
           <div className="campo">
             <label htmlFor="outros">Outros sintomas</label>
-            <input id="outros" type="text" value={outros} onChange={(e) => setOutros(e.target.value)} autoComplete="off" />
+            <input id="outros" name="outros" type="text" value={outros} onChange={(e) => setOutros(e.target.value)} autoComplete="off" />
             <span className="ajuda">Separe por vírgula. Ex.: dor nas costas, enjoo</span>
           </div>
           {errosCampos.sintomas && (

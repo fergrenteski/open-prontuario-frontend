@@ -90,7 +90,7 @@ export function LoginPage({ porta }: { porta: AutenticacaoPort }) {
                         <strong>{p.nome}</strong>
                         <span className="suave">{p.roles.map(rotuloPerfil).join(', ')}</span>
                       </span>
-                      <span className="persona__id dado">{p.id}</span>
+                      <span className="persona__id dado" translate="no">{p.id}</span>
                       <Icone nome="seta" className="persona__seta" />
                     </button>
                   ))}

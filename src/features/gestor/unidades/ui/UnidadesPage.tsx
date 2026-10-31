@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { ErroApi } from '../../../../shared/domain/erros';
 import type { Unidade } from '../../../../shared/domain/tipos';
 import { Alerta, AlertaErro, Carregando, Vazio } from '../../../../shared/ui/Estados';
+import { focarPrimeiroInvalido } from '../../../../shared/ui/foco';
 import { Icone } from '../../../../shared/ui/Icone';
 import '../../../../shared/ui/gestao.css';
 import type { UnidadesPort } from '../application/ports';
@@ -27,11 +28,14 @@ export function UnidadesPage({ porta }: { porta: UnidadesPort }) {
 
   async function aoSalvar(e: FormEvent) {
     e.preventDefault();
+    const formulario = e.currentTarget as HTMLFormElement;
     if (await g.salvar.executar(form, editando?.id)) cancelar();
+    else focarPrimeiroInvalido(formulario);
   }
 
   const campo = (k: keyof FormUnidade) => ({
     id: `unidade-${k}`,
+    name: `unidade-${k}`,
     value: form[k],
     onChange: (e: { target: { value: string } }) => setForm({ ...form, [k]: e.target.value }),
     'aria-invalid': !!g.erros[k],
@@ -146,12 +150,12 @@ export function UnidadesPage({ porta }: { porta: UnidadesPort }) {
           </div>
           <div className="campo">
             <label htmlFor="unidade-latitude">Latitude</label>
-            <input type="text" inputMode="decimal" placeholder="-25.4284" {...campo('latitude')} />
+            <input type="text" inputMode="decimal" placeholder="-25.4284…" {...campo('latitude')} />
             {erro('latitude')}
           </div>
           <div className="campo">
             <label htmlFor="unidade-longitude">Longitude</label>
-            <input type="text" inputMode="decimal" placeholder="-49.2733" {...campo('longitude')} />
+            <input type="text" inputMode="decimal" placeholder="-49.2733…" {...campo('longitude')} />
             {erro('longitude')}
           </div>
           {g.salvar.erro !== undefined && <AlertaErro erro={g.salvar.erro} />}

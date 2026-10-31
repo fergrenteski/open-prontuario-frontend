@@ -1,4 +1,4 @@
-import { act, renderHook, screen } from '@testing-library/react';
+import { act, renderHook, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { registro } from '../../../../test/fakes/fila';
@@ -95,6 +95,7 @@ describe('AvisoChegadaPage', () => {
 
     await u.click(enviar);
     expect(screen.getByText('Informe pelo menos um sintoma.')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByRole('checkbox', { name: 'febre' })).toHaveFocus());
 
     await u.click(screen.getByRole('checkbox', { name: 'febre' }));
     await u.click(enviar);

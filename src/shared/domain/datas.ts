@@ -23,9 +23,12 @@ export function minutosEntre(inicioIso: string, agora: Date): number {
   return Math.max(0, Math.floor((agora.getTime() - new Date(inicioIso).getTime()) / 60000));
 }
 
+// Espaço não separável entre número e unidade (não quebra "34 / min" em duas linhas).
+const NB = '\u00a0';
+
 export function formatarDuracao(min: number): string {
-  if (min < 60) return `${min} min`;
+  if (min < 60) return `${min}${NB}min`;
   const h = Math.floor(min / 60);
   const m = min % 60;
-  return m === 0 ? `${h} h` : `${h} h ${m} min`;
+  return m === 0 ? `${h}${NB}h` : `${h}${NB}h ${m}${NB}min`;
 }

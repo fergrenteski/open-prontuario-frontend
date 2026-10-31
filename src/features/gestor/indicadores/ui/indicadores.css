@@ -100,6 +100,11 @@
   display: grid;
 }
 
+/* A ficha da fonte é clara dentro do bloco escuro: volta ao tom suave do fundo claro. */
+.indic__fonte .suave {
+  color: var(--tinta-suave);
+}
+
 .indic__campos {
   margin-top: var(--e-1);
   font-size: var(--t-xs);

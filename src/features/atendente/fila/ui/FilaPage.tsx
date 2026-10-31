@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Link, useParams } from 'react-router';
+import { Link, useParams, useSearchParams } from 'react-router';
 import { useSessao } from '../../../../shared/application/sessao';
 import { formatarDuracao } from '../../../../shared/domain/datas';
 import { descreverFonte } from '../../../../shared/domain/agregacao';
@@ -40,7 +39,9 @@ export function FilaPage({ porta }: { porta: FilaPort }) {
   const { unidadeId = '' } = useParams();
   const { sessao } = useSessao();
   const fila = useFila(porta, unidadeId);
-  const [filtro, setFiltro] = useState<FiltroFila>('todos');
+  const [params, setParams] = useSearchParams();
+  const filtro: FiltroFila = FILTROS.find((f) => f.valor === params.get('mostrar'))?.valor ?? 'todos';
+  const setFiltro = (f: FiltroFila) => setParams(f === 'todos' ? {} : { mostrar: f }, { replace: true });
   const podeOperar = temPerfil(sessao?.usuario, 'ATENDENTE', 'PROFISSIONAL');
   const { dados, erro, carregando, recarregar } = fila.painel;
 

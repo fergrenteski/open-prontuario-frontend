@@ -81,7 +81,7 @@ describe('LotacoesPage', () => {
     renderTela(<LotacoesPage porta={porta} />, { sessao: sessaoDe('usr-gestor-01', 'Lúcia', 'GESTOR'), url: '/gestao/lotacoes' });
     const u = userEvent.setup();
     expect(await screen.findByRole('heading', { name: 'Lotados em UPA Boa Vista' })).toBeInTheDocument();
-    expect(screen.getByRole('table')).toHaveTextContent('usr-prof-03');
+    expect(await screen.findByRole('table')).toHaveTextContent('usr-prof-03');
 
     await u.selectOptions(screen.getByLabelText('Unidade'), 'upa-02');
     await waitFor(() => expect(porta.listar).toHaveBeenLastCalledWith('upa-02'));

@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Testes (domínio, casos de uso, telas, httpClient, arquitetura) com cobertura
+        run: npm test
+
+      - name: Arquitetura (dependency-cruiser)
+        run: npm run test:arch
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_AUTH_MODE: dev
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - name: docker build
+        run: docker build -t open-prontuario-frontend:ci --build-arg VITE_AUTH_MODE=dev .

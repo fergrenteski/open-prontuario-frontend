@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router';
 import { FilaPage } from '../features/atendente/fila/ui/FilaPage';
 import { ProntuarioPage } from '../features/atendente/prontuario/ui/ProntuarioPage';
 import { SelecaoUnidadePage } from '../features/atendente/selecao-unidade/ui/SelecaoUnidadePage';
@@ -6,7 +6,10 @@ import { AvisoChegadaPage } from '../features/paciente/aviso-chegada/ui/AvisoChe
 import { ConsentimentosPage } from '../features/paciente/consentimentos/ui/ConsentimentosPage';
 import { MeuProntuarioPage } from '../features/paciente/meu-prontuario/ui/MeuProntuarioPage';
 import { UnidadesProximasPage } from '../features/paciente/unidades-proximas/ui/UnidadesProximasPage';
+import { AuditoriaPage } from '../features/gestor/auditoria/ui/AuditoriaPage';
 import { IndicadoresPage } from '../features/gestor/indicadores/ui/IndicadoresPage';
+import { LotacoesPage } from '../features/gestor/lotacoes/ui/LotacoesPage';
+import { UnidadesPage } from '../features/gestor/unidades/ui/UnidadesPage';
 import { LoginPage } from '../features/auth/login/ui/LoginPage';
 import { useSessao } from '../shared/application/sessao';
 import { rotaInicial } from '../shared/domain/perfis';
@@ -36,13 +39,17 @@ export function App() {
             <Route path="/atendimento" element={<SelecaoUnidadePage porta={portas.selecaoUnidade} />} />
             <Route path="/atendimento/:unidadeId/fila" element={<FilaPage porta={portas.fila} />} />
             <Route
-              path="/gestao/indicadores"
               element={
                 <Protegida perfis={['GESTOR']}>
-                  <IndicadoresPage porta={portas.indicadores} />
+                  <Outlet />
                 </Protegida>
               }
-            />
+            >
+              <Route path="/gestao/indicadores" element={<IndicadoresPage porta={portas.indicadores} />} />
+              <Route path="/gestao/auditoria" element={<AuditoriaPage porta={portas.auditoria} />} />
+              <Route path="/gestao/unidades" element={<UnidadesPage porta={portas.unidades} />} />
+              <Route path="/gestao/lotacoes" element={<LotacoesPage porta={portas.lotacoes} />} />
+            </Route>
             <Route
               path="/atendimento/:unidadeId/prontuario/:pacienteId"
               element={

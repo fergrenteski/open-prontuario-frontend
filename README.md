@@ -177,7 +177,7 @@ docker build -t open-prontuario-frontend:local \
 docker run --rm -p 8080:8080 open-prontuario-frontend:local   # http://localhost:8080
 ```
 
-Multi-stage: `node:24-alpine` faz o build do Vite com os `ARG VITE_*`; o runtime é `nginxinc/nginx-unprivileged` (usuário 101, porta 8080) com fallback de SPA, `/healthz` usado no `HEALTHCHECK`, cache imutável em `/assets` e cabeçalhos de segurança (CSP, `nosniff`, `frame-ancestors 'none'`). Publicação no Docker Hub fica a cargo do script do repositório `open-prontuario-platform` (`<usuario>/pjbl/frontend:<tag>`).
+Multi-stage: `node:24-alpine` faz o build do Vite com os `ARG VITE_*`; o runtime é `nginxinc/nginx-unprivileged` (usuário 101, porta 8080) com fallback de SPA, `/healthz` usado no `HEALTHCHECK`, cache imutável em `/assets` e cabeçalhos de segurança (CSP, `nosniff`, `frame-ancestors 'none'`). Publicação no Docker Hub fica a cargo do script do repositório `open-prontuario-platform` (`<usuario>/pjbl-frontend:<tag>`).
 
 ## Deploy (Azure Static Web Apps)
 

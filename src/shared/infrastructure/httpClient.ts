@@ -58,7 +58,8 @@ export function criarHttpClient(opcoes: OpcoesHttp): HttpClient {
         method: metodo,
         headers,
         body: corpo === undefined ? undefined : JSON.stringify(corpo),
-        signal: AbortSignal.timeout(opcoes.timeoutMs ?? 15000),
+        // Em nuvem tudo escala a zero: BFF + microserviço Java acordando somam ~60 s.
+        signal: AbortSignal.timeout(opcoes.timeoutMs ?? 60000),
       });
     } catch {
       throw new ErroApi({ status: 0, codigo: 'REDE_INDISPONIVEL' });
